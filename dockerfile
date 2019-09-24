@@ -14,5 +14,7 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-alpine
 WORKDIR /app
 COPY --from=build-env /app/out .
+COPY StepChallenge.db ./db/
+VOLUME /app/db
 EXPOSE 80
 ENTRYPOINT ["dotnet", "StepChallenge.dll"]
